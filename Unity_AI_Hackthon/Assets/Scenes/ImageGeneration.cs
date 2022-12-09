@@ -15,7 +15,7 @@ using UnityEngine.UI;
 
 
 //https://stackoverflow.com/questions/74326253/curl-request-c-sharp-unity3d
-public class TextGeneration : MonoBehaviour
+public class ImageGeneration : MonoBehaviour
 {
 
     public string inputText;
