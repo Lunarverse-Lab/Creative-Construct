@@ -51,7 +51,7 @@ public class TextGeneration : MonoBehaviour
             }
 
             //Debug.Log(request.downloadHandler.text);
-            Debug.Log(request.downloadHandler);
+            Debug.Log(request.downloadHandler.text);
             var response = request.downloadHandler.data; // Or you can directly get the raw binary data, if you need.
             //Debug.Log(response);
         }
