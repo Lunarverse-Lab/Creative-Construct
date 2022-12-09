@@ -11,14 +11,14 @@ using TreeEditor;
 using UnityEditor.PackageManager.Requests;
 using LitJson;
 using UnityEditor.Experimental.GraphView;
-
+using UnityEngine.UI;
 
 
 //https://stackoverflow.com/questions/74326253/curl-request-c-sharp-unity3d
 public class TextGeneration : MonoBehaviour
 {
 
-    //public string inputText;
+    public string inputText;
     public Texture2D texture;
 
     private const string YourApiKey = "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";
@@ -32,10 +32,12 @@ public class TextGeneration : MonoBehaviour
     }
 
     public ImageGeneratedParameter imageGeneration = new ImageGeneratedParameter();
+    public RawImage textureImage;
 
     void Start()
     {
-        imageGeneration.prompt = "Using Hololens to enter Hyper-Connected Metaverse";
+        //imageGeneration.prompt = "Using Hololens to enter Hyper-Connected Metaverse in Toronto";
+        imageGeneration.prompt = inputText;
         imageGeneration.n = 2;
         imageGeneration.size = "1024x1024";
         //var json = "{\"prompt\": \"A cute baby sea otter in metaverse\",\"n\": 2,\"size\": \"1024x1024\"}";
@@ -77,6 +79,8 @@ public class TextGeneration : MonoBehaviour
             www.LoadImageIntoTexture(texture);
             www.Dispose();
             www = null;
+
+            textureImage.texture = texture;
 
 
 
