@@ -51,7 +51,7 @@ public class TextGeneration : MonoBehaviour
             }
 
             //Debug.Log(request.downloadHandler.text);
-            Debug.Log(JsonUtility.FromJson<OpenAIResponImage>(request.downloadHandler.text).data);
+            Debug.Log(request.downloadHandler);
             var response = request.downloadHandler.data; // Or you can directly get the raw binary data, if you need.
             //Debug.Log(response);
         }
