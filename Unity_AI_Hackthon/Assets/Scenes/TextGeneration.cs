@@ -11,7 +11,16 @@ using System.Text;
 public class TextGeneration : MonoBehaviour
 {
 
+
+
     //OpenAIClient api = new OpenAIClient(new OpenAIAuthentication("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"));
+    public class OpenAIResponImage
+    {
+        public int created;
+        
+        public List<string> data;
+    }
+
 
     private const string YourApiKey = "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";
 
@@ -41,7 +50,8 @@ public class TextGeneration : MonoBehaviour
                 yield break;
             }
 
-            Debug.Log(request.downloadHandler.text);
+            //Debug.Log(request.downloadHandler.text);
+            Debug.Log(JsonUtility.FromJson<OpenAIResponImage>(request.downloadHandler.text).data);
             var response = request.downloadHandler.data; // Or you can directly get the raw binary data, if you need.
             //Debug.Log(response);
         }
