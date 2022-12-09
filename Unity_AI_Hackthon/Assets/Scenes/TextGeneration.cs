@@ -6,28 +6,41 @@ using System.Threading.Tasks;
 using System;
 using UnityEngine.Networking;
 using System.Text;
+using Newtonsoft.Json;
+using TreeEditor;
+using UnityEditor.PackageManager.Requests;
+using LitJson;
+using UnityEditor.Experimental.GraphView;
+
+
 
 //https://stackoverflow.com/questions/74326253/curl-request-c-sharp-unity3d
 public class TextGeneration : MonoBehaviour
 {
 
-
-
-    //OpenAIClient api = new OpenAIClient(new OpenAIAuthentication("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"));
-    public class OpenAIResponImage
-    {
-        public int created;
-        
-        public List<string> data;
-    }
-
+    //public string inputText;
+    public Texture2D texture;
 
     private const string YourApiKey = "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";
 
+    public class ImageGeneratedParameter
+    {
+
+        public string prompt;
+        public int n;
+        public string size;
+    }
+
+    public ImageGeneratedParameter imageGeneration = new ImageGeneratedParameter();
+
     void Start()
     {
-        var json = "{\"prompt\": \"A cute baby sea otter in metaverse\",\"n\": 1,\"size\": \"1024x1024\"}";
-        StartCoroutine(FillAndSend(json));
+        imageGeneration.prompt = "Using Hololens to enter Hyper-Connected Metaverse";
+        imageGeneration.n = 2;
+        imageGeneration.size = "1024x1024";
+        //var json = "{\"prompt\": \"A cute baby sea otter in metaverse\",\"n\": 2,\"size\": \"1024x1024\"}";
+        StartCoroutine(FillAndSend(JsonMapper.ToJson(imageGeneration)));
+        texture = new Texture2D(1024, 1024);
     }
 
     public IEnumerator FillAndSend(string json)
@@ -52,8 +65,21 @@ public class TextGeneration : MonoBehaviour
 
             //Debug.Log(request.downloadHandler.text);
             Debug.Log(request.downloadHandler.text);
-            var response = request.downloadHandler.data; // Or you can directly get the raw binary data, if you need.
-            //Debug.Log(response);
+            //var imageData = JsonUtility.FromJson<OpenAIResponImage>(request.downloadHandler.text).data;
+            JsonData jsondata = JsonMapper.ToObject(request.downloadHandler.text);
+            Debug.Log(jsondata["data"][0]["url"]);
+
+            //URL Image
+            
+
+            WWW www = new WWW((string)jsondata["data"][0]["url"]);
+            yield return www;
+            www.LoadImageIntoTexture(texture);
+            www.Dispose();
+            www = null;
+
+
+
         }
     }
 
