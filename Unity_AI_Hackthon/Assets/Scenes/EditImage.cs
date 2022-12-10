@@ -12,6 +12,7 @@ using UnityEditor.PackageManager.Requests;
 using LitJson;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UI;
+using System.IO;
 
 
 //https://stackoverflow.com/questions/74326253/curl-request-c-sharp-unity3d
@@ -21,12 +22,15 @@ public class EditImage : MonoBehaviour
     public string inputText;
     public Texture2D texture;
 
+    public TextAsset imageAsset;
+    public TextAsset maskAsset;
+
     private const string YourApiKey = "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";
 
     public class ImageGeneratedParameter
     {
-        public string image;
-        public string mask;
+        public byte[] image;
+        public byte[] mask;
         public string prompt;
         public int n;
         public string size;
@@ -38,10 +42,10 @@ public class EditImage : MonoBehaviour
     void Start()
     {
         //imageGeneration.prompt = "Using Hololens to enter Hyper-Connected Metaverse in Toronto";
-        imageGeneration.image = "template.png";
-        imageGeneration.mask = "mask.png";
+        imageGeneration.image = imageAsset.bytes;
+        imageGeneration.mask = maskAsset.bytes;
         imageGeneration.prompt = inputText;
-        imageGeneration.n = 2;
+        imageGeneration.n = 1;
         imageGeneration.size = "1024x1024";
         //var json = "{\"prompt\": \"A cute baby sea otter in metaverse\",\"n\": 2,\"size\": \"1024x1024\"}";
         StartCoroutine(FillAndSend(JsonMapper.ToJson(imageGeneration)));
@@ -50,7 +54,7 @@ public class EditImage : MonoBehaviour
 
     public IEnumerator FillAndSend(string json)
     {
-        using (var request = new UnityWebRequest("https://api.openai.com/v1/images/generations", "POST"))
+        using (var request = new UnityWebRequest("https://api.openai.com/v1/images/edits", "POST"))
         {
             request.SetRequestHeader("Content-Type", "application/json");
             request.SetRequestHeader("Authorization", $"Bearer {YourApiKey}");
