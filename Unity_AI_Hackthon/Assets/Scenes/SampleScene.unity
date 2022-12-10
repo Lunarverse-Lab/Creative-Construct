@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -507,6 +507,7 @@ GameObject:
   - component: {fileID: 2101099256}
   - component: {fileID: 2101099255}
   - component: {fileID: 2101099257}
+  - component: {fileID: 2101099258}
   m_Layer: 0
   m_Name: OpenAI
   m_TagString: Untagged
@@ -551,16 +552,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101099254}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c55fc0d37371941fba6bfcf950bec6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputText: Generate a face
   texture: {fileID: 0}
-  imageAsset: {fileID: 0}
-  maskAsset: {fileID: 0}
+  imageAsset: {fileID: 2800000, guid: 47f2e9241a4974dbe9bcbec6419c6ca5, type: 3}
+  maskAsset: {fileID: 2800000, guid: 14755cfa604f44f5bb6f96b733e37ded, type: 3}
   textureImage: {fileID: 11931913}
+--- !u!114 &2101099258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101099254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda4799f4fceb6048b808670ba645247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputText: Generate a face for toronto
+  texture: {fileID: 0}
+  textureImage: {fileID: 0}
 --- !u!1 &2131636829
 GameObject:
   m_ObjectHideFlags: 0

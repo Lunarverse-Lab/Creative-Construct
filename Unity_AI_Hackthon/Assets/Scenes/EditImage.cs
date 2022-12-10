@@ -22,15 +22,15 @@ public class EditImage : MonoBehaviour
     public string inputText;
     public Texture2D texture;
 
-    public TextAsset imageAsset;
-    public TextAsset maskAsset;
+    public Texture2D imageAsset;
+    public Texture2D maskAsset;
 
     private const string YourApiKey = "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";
 
     public class ImageGeneratedParameter
     {
-        public byte[] image;
-        public byte[] mask;
+        public Texture2D image;
+        public Texture2D mask;
         public string prompt;
         public int n;
         public string size;
@@ -42,8 +42,8 @@ public class EditImage : MonoBehaviour
     void Start()
     {
         //imageGeneration.prompt = "Using Hololens to enter Hyper-Connected Metaverse in Toronto";
-        imageGeneration.image = imageAsset.bytes;
-        imageGeneration.mask = maskAsset.bytes;
+        imageGeneration.image = imageAsset;
+        imageGeneration.mask = maskAsset;
         imageGeneration.prompt = inputText;
         imageGeneration.n = 1;
         imageGeneration.size = "1024x1024";
