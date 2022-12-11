@@ -12,11 +12,12 @@ using UnityEditor.PackageManager.Requests;
 using LitJson;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UI;
-
+using TMPro;
 public class TextCompletions : MonoBehaviour
 {
     public string inputText;
-    public Texture2D texture;
+    public GameObject prefebText;
+    //public Texture2D texture;
 
     private const string YourApiKey = "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";
 
@@ -24,25 +25,37 @@ public class TextCompletions : MonoBehaviour
     {
         public string model;
         public string prompt;
+        //public int n;
+        //public float temperature;
+
         public int max_tokens;
 
     }
 
     public ImageGeneratedParameter imageGeneration = new ImageGeneratedParameter();
-    public RawImage textureImage;
+    //public RawImage textureImage;
+    public TMP_InputField input;
+
 
     void Start()
     {
         //imageGeneration.prompt = "Using Hololens to enter Hyper-Connected Metaverse in Toronto";
         imageGeneration.model = "text-davinci-003";
-
-        imageGeneration.prompt = "Generate five keywords for \"" +  inputText + "\" in json format";
+        //imageGeneration.temperature = (float)0.9;
+        //imageGeneration.n = 5;
+        //imageGeneration.prompt = "Generate five keywords for \"" +  inputText + "\" in json format";
         imageGeneration.max_tokens = 50;
+
         
         
-        //var json = "{\"prompt\": \"A cute baby sea otter in metaverse\",\"n\": 2,\"size\": \"1024x1024\"}";
+    }
+
+    public void generateKeyword()
+    {
+        inputText = input.text;
+        imageGeneration.prompt = "Generate five \"keywords\" for \"" + inputText + "\"in JSON format \"keywords\" as title";
         StartCoroutine(FillAndSend(JsonMapper.ToJson(imageGeneration)));
-        texture = new Texture2D(1024, 1024);
+        
     }
 
     public IEnumerator FillAndSend(string json)
@@ -69,9 +82,32 @@ public class TextCompletions : MonoBehaviour
             //Debug.Log(request.downloadHandler.text);
             //var imageData = JsonUtility.FromJson<OpenAIResponImage>(request.downloadHandler.text).data;
             JsonData jsondata = JsonMapper.ToObject(request.downloadHandler.text);
-            Debug.Log(jsondata["choices"][0]["text"]);
-
             
+            
+            //
+            //var arrayKeywords = jsondata;
+            //Debug.Log(request.downloadHandler.text);
+            //Debug.Log(arrayKeywords[0]);
+            Debug.Log(jsondata["choices"][0]["text"]);
+            string arrayKeywords = (string)jsondata["choices"][0]["text"];
+
+            var keywordsList = JsonMapper.ToObject(arrayKeywords)["keywords"];
+            for(int i = 0; i < keywordsList.Count; i++)
+            {
+                Debug.Log(keywordsList[i]);
+                GameObject textObject = Instantiate(prefebText, new Vector3(0,i,0), new Quaternion(0,0,0,0));
+                textObject.GetComponent<TMP_Text>().text = (string)keywordsList[i];
+            }
+            /*
+            var responededKeywords = jsondata["choices"][0]["text"]["Keywords"];
+            for (int i =0;i< responededKeywords.Count; i++)
+            {
+                Debug.Log(responededKeywords[i]);
+            }
+            */
+
+
+
 
 
 
