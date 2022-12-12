@@ -52,6 +52,8 @@ public class ImageGeneration : MonoBehaviour
     {
         using (var request = new UnityWebRequest("https://api.openai.com/v1/images/generations", "POST"))
         {
+            GameObject imageObject = Instantiate(imagePlane, transform);
+
             request.SetRequestHeader("Content-Type", "application/json");
             request.SetRequestHeader("Authorization", $"Bearer {YourApiKey}");
             request.SetRequestHeader("Accept", " text/plain");
@@ -85,7 +87,7 @@ public class ImageGeneration : MonoBehaviour
 
             //textureImage.texture = texture;
             //instance image
-            GameObject imageObject = Instantiate(imagePlane, transform);
+            
             imageObject.GetComponent<Renderer>().material.mainTexture = texture;
 
 

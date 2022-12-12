@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1306775215052766352}
   - component: {fileID: 9190140627409881118}
   - component: {fileID: 1889748476456893455}
-  - component: {fileID: 7274829648386710628}
   - component: {fileID: 4314566884468520436}
+  - component: {fileID: 2293694461741998846}
   m_Layer: 0
   m_Name: ImageGeneration
   m_TagString: Untagged
@@ -175,19 +175,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 9190140627409881118}
   m_maskType: 0
---- !u!65 &7274829648386710628
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 923701177137343777}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 19.1093, y: 3.4534883, z: 0}
-  m_Center: {x: -0.37209415, y: 0.16194582, z: 0}
 --- !u!114 &4314566884468520436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,3 +191,17 @@ MonoBehaviour:
   texture: {fileID: 0}
   imagePlane: {fileID: 2221453998653177045, guid: e1daec380d9dc8d44879ec85a88d36cd,
     type: 3}
+--- !u!64 &2293694461741998846
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923701177137343777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
