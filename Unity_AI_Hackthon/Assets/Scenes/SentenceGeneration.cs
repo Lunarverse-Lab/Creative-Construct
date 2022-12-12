@@ -14,43 +14,54 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.UI;
 using TMPro;
 
-
-//https://stackoverflow.com/questions/74326253/curl-request-c-sharp-unity3d
-public class ImageGeneration : MonoBehaviour
+public class SentenceGeneration : MonoBehaviour
 {
-
     public string inputText;
-    public Texture2D texture;
+    public GameObject prefebText;
+    //public Texture2D texture;
 
     private const string YourApiKey = "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";
 
     public class ImageGeneratedParameter
     {
-
+        public string model;
         public string prompt;
-        public int n;
-        public string size;
+        //public int n;
+        //public float temperature;
+
+        public int max_tokens;
+
     }
 
     public ImageGeneratedParameter imageGeneration = new ImageGeneratedParameter();
     //public RawImage textureImage;
-    public GameObject imagePlane;
+    //public TMP_InputField input;
 
-    void generateImageFunction()
+
+    void Start()
+    {
+        //imageGeneration.prompt = "Using Hololens to enter Hyper-Connected Metaverse in Toronto";
+        imageGeneration.model = "text-davinci-003";
+        //imageGeneration.temperature = (float)0.9;
+        //imageGeneration.n = 5;
+        //imageGeneration.prompt = "Generate five keywords for \"" +  inputText + "\" in json format";
+        imageGeneration.max_tokens = 50;
+
+
+
+    }
+
+    public void generateSentenceFunction()
     {
         inputText = GetComponent<TMP_Text>().text;
-        //imageGeneration.prompt = "Using Hololens to enter Hyper-Connected Metaverse in Toronto";
-        imageGeneration.prompt = inputText;
-        imageGeneration.n = 1;
-        imageGeneration.size = "1024x1024";
-        //var json = "{\"prompt\": \"A cute baby sea otter in metaverse\",\"n\": 2,\"size\": \"1024x1024\"}";
+        imageGeneration.prompt = "Generate a sentence from \"" + inputText + "\"";
         StartCoroutine(FillAndSend(JsonMapper.ToJson(imageGeneration)));
-        texture = new Texture2D(1024, 1024);
+
     }
 
     public IEnumerator FillAndSend(string json)
     {
-        using (var request = new UnityWebRequest("https://api.openai.com/v1/images/generations", "POST"))
+        using (var request = new UnityWebRequest("https://api.openai.com/v1/completions", "POST"))
         {
             request.SetRequestHeader("Content-Type", "application/json");
             request.SetRequestHeader("Authorization", $"Bearer {YourApiKey}");
@@ -69,33 +80,42 @@ public class ImageGeneration : MonoBehaviour
             }
 
             //Debug.Log(request.downloadHandler.text);
-            Debug.Log(request.downloadHandler.text);
+            //Debug.Log(request.downloadHandler.text);
             //var imageData = JsonUtility.FromJson<OpenAIResponImage>(request.downloadHandler.text).data;
             JsonData jsondata = JsonMapper.ToObject(request.downloadHandler.text);
-            Debug.Log(jsondata["data"][0]["url"]);
 
-            //URL Image
+
+            //
+            //var arrayKeywords = jsondata;
+            //Debug.Log(request.downloadHandler.text);
+            //Debug.Log(arrayKeywords[0]);
+            Debug.Log(jsondata["choices"][0]["text"]);
+            string arrayKeywords = (string)jsondata["choices"][0]["text"];
+
             
+           
+                Debug.Log(arrayKeywords);
+                GameObject textObject = Instantiate(prefebText, transform);
+                textObject.GetComponent<TMP_Text>().text = arrayKeywords;
+            
+            /*
+            var responededKeywords = jsondata["choices"][0]["text"]["Keywords"];
+            for (int i =0;i< responededKeywords.Count; i++)
+            {
+                Debug.Log(responededKeywords[i]);
+            }
+            */
 
-            WWW www = new WWW((string)jsondata["data"][0]["url"]);
-            yield return www;
-            www.LoadImageIntoTexture(texture);
-            www.Dispose();
-            www = null;
 
-            //textureImage.texture = texture;
-            //instance image
-            GameObject imageObject = Instantiate(imagePlane, transform);
-            imageObject.GetComponent<Renderer>().material.mainTexture = texture;
+
+
 
 
         }
     }
-
     void OnMouseDown()
     {
         // Destroy the gameObject after clicking on it
-        generateImageFunction();
+        generateSentenceFunction();
     }
-
 }

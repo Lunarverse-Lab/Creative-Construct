@@ -1294,8 +1294,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101099256}
-  - component: {fileID: 2101099255}
-  - component: {fileID: 2101099257}
   - component: {fileID: 2101099258}
   m_Layer: 0
   m_Name: OpenAI
@@ -1304,21 +1302,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2101099255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101099254}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73768297665967d46b885e84f9f8ceaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputText: Generat a man wearing mixed reality headset in the metaverse as developer
-  texture: {fileID: 0}
-  textureImage: {fileID: 11931913}
 --- !u!4 &2101099256
 Transform:
   m_ObjectHideFlags: 0
@@ -1334,23 +1317,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2101099257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101099254}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c55fc0d37371941fba6bfcf950bec6f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputText: Generate a face
-  texture: {fileID: 0}
-  imageAsset: {fileID: 2800000, guid: 47f2e9241a4974dbe9bcbec6419c6ca5, type: 3}
-  maskAsset: {fileID: 2800000, guid: 14755cfa604f44f5bb6f96b733e37ded, type: 3}
-  textureImage: {fileID: 11931913}
 --- !u!114 &2101099258
 MonoBehaviour:
   m_ObjectHideFlags: 0
