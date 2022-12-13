@@ -97,10 +97,7 @@ public class SentenceGeneration : MonoBehaviour
                 Debug.Log(arrayKeywords);
                 GameObject textObject = Instantiate(prefebText, transform);
                 textObject.GetComponent<TMP_Text>().text = arrayKeywords;
-            textObject.GetComponent<MeshCollider>().convex = enabled;
-            textObject.GetComponent<MeshCollider>().sharedMesh = textObject.GetComponent<TMP_Text>().mesh;
-            textObject.GetComponent<MeshCollider>().convex = !enabled;
-            textObject.GetComponent<MeshCollider>().convex = enabled;
+            
 
             //textObject.GetComponent<MeshCollider>()
 
