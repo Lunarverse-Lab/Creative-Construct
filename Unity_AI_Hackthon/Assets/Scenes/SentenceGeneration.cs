@@ -96,6 +96,8 @@ public class SentenceGeneration : MonoBehaviour
            
                 Debug.Log(arrayKeywords);
                 GameObject textObject = Instantiate(prefebText, transform);
+                var objectPosition = textObject.transform.position;
+                objectPosition.x = 1;
                 textObject.GetComponent<TMP_Text>().text = arrayKeywords;
             
 
