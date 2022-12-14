@@ -54,6 +54,7 @@ public class TextCompletions : MonoBehaviour
     {
         inputText = input.text;
         imageGeneration.prompt = "Generate five \"keywords\" for \"" + inputText + "\"in JSON format \"keywords\" as title";
+        //imageGeneration.prompt =  "Extract 5 relevant \"keywords\" and similar concepts from the following \"" + inputText + "\"in JSON format and \"keywords\" as title";
         StartCoroutine(FillAndSend(JsonMapper.ToJson(imageGeneration)));
         
     }

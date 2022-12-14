@@ -54,7 +54,8 @@ public class SentenceGeneration : MonoBehaviour
     public void generateSentenceFunction()
     {
         inputText = GetComponent<TMP_Text>().text;
-        imageGeneration.prompt = "Generate a sentence from \"" + inputText + "\"";
+        //imageGeneration.prompt = "Generate a sentence from \"" + inputText + "\"";
+        imageGeneration.prompt = "Provide brief additional information and external URL links on the following: \"" + inputText + "\"";
         StartCoroutine(FillAndSend(JsonMapper.ToJson(imageGeneration)));
 
     }
