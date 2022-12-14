@@ -17,9 +17,13 @@ public class TextCompletions : MonoBehaviour
 {
     public string inputText;
     public GameObject prefebText;
+    
+    public bool initialGeneration;
     //public Texture2D texture;
 
     private const string YourApiKey = "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";
+    public float instancePositionX;
+   
 
     public class ImageGeneratedParameter
     {
@@ -52,7 +56,17 @@ public class TextCompletions : MonoBehaviour
 
     public void generateKeyword()
     {
-        inputText = input.text;
+        if(initialGeneration == true)
+        {
+            instancePositionX = 0;
+            inputText = input.text;
+        }
+        else
+        {
+            instancePositionX = 1;
+            inputText = GetComponentInParent<ImageGeneration>().inputText;
+        }
+        
         imageGeneration.prompt = "Generate five \"keywords\" for \"" + inputText + "\"in JSON format \"keywords\" as title";
         //imageGeneration.prompt =  "Extract 5 relevant \"keywords\" and similar concepts from the following \"" + inputText + "\"in JSON format and \"keywords\" as title";
         StartCoroutine(FillAndSend(JsonMapper.ToJson(imageGeneration)));
@@ -96,22 +110,27 @@ public class TextCompletions : MonoBehaviour
             for(int i = 0; i < keywordsList.Count; i++)
             {
                 Debug.Log(keywordsList[i]);
-                GameObject textObject = Instantiate(prefebText, new Vector3(0,i,0), new Quaternion(0,0,0,0));
+                GameObject textObject = Instantiate(prefebText, new Vector3(instancePositionX,i,0), new Quaternion(0, 0, 0, 0), transform);
+                //var textPosition = textObject.GetComponent<RectTransform>().localPosition;
+                //textPosition.y = i;
                 textObject.GetComponent<TMP_Text>().text = (string)keywordsList[i];
             }
-            /*
-            var responededKeywords = jsondata["choices"][0]["text"]["Keywords"];
-            for (int i =0;i< responededKeywords.Count; i++)
-            {
-                Debug.Log(responededKeywords[i]);
-            }
-            */
+
+            
+
+    /*
+    var responededKeywords = jsondata["choices"][0]["text"]["Keywords"];
+    for (int i =0;i< responededKeywords.Count; i++)
+    {
+        Debug.Log(responededKeywords[i]);
+    }
+    */
 
 
 
 
 
 
-        }
+}
     }
 }

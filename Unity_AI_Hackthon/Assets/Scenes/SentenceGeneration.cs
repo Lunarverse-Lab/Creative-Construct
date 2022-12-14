@@ -100,8 +100,8 @@ public class SentenceGeneration : MonoBehaviour
                 var objectPosition = textObject.transform.position;
                 objectPosition.x = 1;
                 textObject.GetComponent<TMP_Text>().text = arrayKeywords;
-            textObject.GetComponentInChildren<LineRenderer>().SetPosition(0,transform.position);
-            textObject.GetComponentInChildren<LineRenderer>().SetPosition(1,textObject.GetComponent<RectTransform>().position);
+            //textObject.GetComponentInChildren<LineRenderer>().SetPosition(0,transform.position);
+            //textObject.GetComponentInChildren<LineRenderer>().SetPosition(1,textObject.GetComponent<RectTransform>().position);
 
 
             //textObject.GetComponent<MeshCollider>()

@@ -21,6 +21,7 @@ public class ImageGeneration : MonoBehaviour
 
     public string inputText;
     public Texture2D texture;
+    public TextCompletions openai;
 
     private const string YourApiKey = "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";
 
@@ -98,6 +99,8 @@ public class ImageGeneration : MonoBehaviour
     {
         // Destroy the gameObject after clicking on it
         generateImageFunction();
+        
+        openai.generateKeyword();
     }
 
 }
