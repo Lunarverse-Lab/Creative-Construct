@@ -3,7 +3,10 @@ guid: 73768297665967d46b885e84f9f8ceaf
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - texture: {instanceID: 0}
+  - openai: {instanceID: 0}
+  - imagePlane: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

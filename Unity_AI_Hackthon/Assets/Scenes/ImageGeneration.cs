@@ -41,7 +41,7 @@ public class ImageGeneration : MonoBehaviour
     {
         inputText = GetComponent<TMP_Text>().text;
         //imageGeneration.prompt = "Using Hololens to enter Hyper-Connected Metaverse in Toronto";
-        imageGeneration.prompt = inputText;
+        imageGeneration.prompt = inputText + " No words or texts";
         imageGeneration.n = 1;
         imageGeneration.size = "1024x1024";
         //var json = "{\"prompt\": \"A cute baby sea otter in metaverse\",\"n\": 2,\"size\": \"1024x1024\"}";

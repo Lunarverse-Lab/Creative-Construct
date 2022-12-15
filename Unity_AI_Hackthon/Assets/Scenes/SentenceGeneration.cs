@@ -45,7 +45,7 @@ public class SentenceGeneration : MonoBehaviour
         //imageGeneration.temperature = (float)0.9;
         //imageGeneration.n = 5;
         //imageGeneration.prompt = "Generate five keywords for \"" +  inputText + "\" in json format";
-        imageGeneration.max_tokens = 50;
+        imageGeneration.max_tokens = 100;
 
 
 
@@ -55,7 +55,7 @@ public class SentenceGeneration : MonoBehaviour
     {
         inputText = GetComponent<TMP_Text>().text;
         //imageGeneration.prompt = "Generate a sentence from \"" + inputText + "\"";
-        imageGeneration.prompt = "Provide brief additional information and external URL links on the following: \"" + inputText + "\"";
+        imageGeneration.prompt = "Provide brief additional information on the following: \"" + inputText + "\"";
         StartCoroutine(FillAndSend(JsonMapper.ToJson(imageGeneration)));
 
     }
@@ -99,7 +99,7 @@ public class SentenceGeneration : MonoBehaviour
                 GameObject textObject = Instantiate(prefebText, transform);
                 var objectPosition = textObject.transform.position;
                 objectPosition.x = 1;
-                textObject.GetComponent<TMP_Text>().text = arrayKeywords;
+                textObject.GetComponent<TMP_Text>().text = "{fade d=2}" + arrayKeywords;
             //textObject.GetComponentInChildren<LineRenderer>().SetPosition(0,transform.position);
             //textObject.GetComponentInChildren<LineRenderer>().SetPosition(1,textObject.GetComponent<RectTransform>().position);
 

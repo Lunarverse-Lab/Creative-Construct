@@ -67,7 +67,8 @@ public class TextCompletions : MonoBehaviour
             inputText = GetComponentInParent<ImageGeneration>().inputText;
         }
         
-        imageGeneration.prompt = "Generate five \"keywords\" for \"" + inputText + "\"in JSON format \"keywords\" as title";
+        //imageGeneration.prompt = "Generate five \"keywords\" for \"" + inputText + "\"in JSON format \"keywords\" as title";
+        imageGeneration.prompt = "Extract and generate five \"keywords\" for \"" + "about \"" + inputText + "\"in JSON format \"keywords\" as title";
         //imageGeneration.prompt =  "Extract 5 relevant \"keywords\" and similar concepts from the following \"" + inputText + "\"in JSON format and \"keywords\" as title";
         StartCoroutine(FillAndSend(JsonMapper.ToJson(imageGeneration)));
         
@@ -113,7 +114,7 @@ public class TextCompletions : MonoBehaviour
                 GameObject textObject = Instantiate(prefebText, new Vector3(instancePositionX,i,0), new Quaternion(0, 0, 0, 0), transform);
                 //var textPosition = textObject.GetComponent<RectTransform>().localPosition;
                 //textPosition.y = i;
-                textObject.GetComponent<TMP_Text>().text = (string)keywordsList[i];
+                textObject.GetComponent<TMP_Text>().text = "{fade d=4}" + (string)keywordsList[i];
             }
 
             
