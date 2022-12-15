@@ -100,7 +100,7 @@ public class ImageGeneration : MonoBehaviour
         // Destroy the gameObject after clicking on it
         generateImageFunction();
         
-        openai.generateKeyword();
+        //openai.generateKeyword();
     }
 
 }

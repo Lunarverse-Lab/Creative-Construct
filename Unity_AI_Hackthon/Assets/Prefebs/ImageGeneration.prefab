@@ -207,7 +207,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 2.7
-  m_Center: {x: -14.02, y: -4.5, z: 0}
+  m_Center: {x: -14.02, y: -10.23, z: 0}
 --- !u!114 &4710265743520406235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,7 +426,7 @@ SphereCollider:
   m_GameObject: {fileID: 4981354932647042048}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
@@ -492,6 +492,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1530642078878850979, guid: 89472fba337a5194a9386e412a73ac4d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1530642078878850991, guid: 89472fba337a5194a9386e412a73ac4d,
         type: 3}
       propertyPath: m_Name
@@ -506,7 +511,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 5893319980315255543}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bda4799f4fceb6048b808670ba645247, type: 3}
   m_Name: 
