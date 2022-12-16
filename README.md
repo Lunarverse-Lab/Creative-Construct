@@ -27,4 +27,5 @@ Creative Construct is an engine driven by AI (OpenAI’s GPT-3 and ), empowering
 
 
 
-### by Jie Guan & Connor YS Matla
+## 
+by Jie Guan & Connor YS Matla
